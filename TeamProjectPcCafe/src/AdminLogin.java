@@ -37,7 +37,7 @@ public class AdminLogin extends JFrame{
 		
 		
 		try {
-			img = ImageIO.read(new File("C:\\Users\\wkmoo\\git\\TeamProject_PcCafeProject\\TeamProject_PcCafeProject\\TeamProjectPcCafe\\src\\img/login.jpg"));
+			img = ImageIO.read(new File("C:\\Users\\Song\\Desktop\\TEAM_PcCafe-master\\TEAM_PcCafe-master\\TeamProjectPcCafe\\src\\img/login.jpg"));
 		}catch(IOException e) {
 			System.out.println("Failed to load image");
 			System.exit(0);
