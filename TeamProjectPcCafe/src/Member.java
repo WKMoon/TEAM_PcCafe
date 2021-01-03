@@ -7,7 +7,7 @@ public class Member {
 	String phone;
 	
 	//로그인
-	int pcNum;
+	String pcNum;
 
 	Member(String name, String password, int age, String phone){
 		this.name = name;
@@ -39,13 +39,13 @@ public class Member {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public int getPcNum() {
+	public String getPcNum() {
 		return pcNum;
 	}
-	public void setPcNum(int pcNum) {
+	public void setPcNum(String pcNum) {
 		this.pcNum = pcNum;
 	}
-	Member(String name, String password, int pcNum){
+	Member(String name, String password, String pcNum){
 		this.name = name;
 		this.password = password;
 		this.pcNum = pcNum;
