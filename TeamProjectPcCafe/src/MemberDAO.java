@@ -5,16 +5,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class MemberDAO {
-	//1.오라클 데이터베이스 연동을 위한 4가지 정보를 문자열에 저장
 		String driver="oracle.jdbc.driver.OracleDriver";
 		String url="jdbc:oracle:thin:@localhost:1521:XE";
-		String userid="system";//만든 맴버 클래스의 아이디랑 비밀번호 
-		String passwd="1234";
+		String userid="PCUSER";//만든 맴버 클래스의 아이디랑 비밀번호 
+		String passwd="12345";
 
 		
 		public MemberDAO() {
 			try {			
-		//2.드라이버 로딩  OracleDriver 클래스를 자바에서 이용하기 위해서 JVM에 올려줌
 				Class.forName(driver);
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
@@ -24,7 +22,7 @@ public class MemberDAO {
 		
 		
 		//name이 존재하는지 체크하는 메소드
-	    public boolean isExist(String name, String password) {
+	    public boolean isExist(String id, String password) {
 	    	boolean result=false;
 	    	Connection con= null;
 	    	PreparedStatement pstmt=null;
@@ -32,9 +30,9 @@ public class MemberDAO {
 	    	
 	    	try {
 				con=DriverManager.getConnection(url,userid,passwd);
-				String sql="SELECT*FROM member WHERE name=? AND password=?";
+				String sql="SELECT * FROM member WHERE id=? AND password=?";
 				pstmt=con.prepareStatement(sql);
-				pstmt.setString(1, name);
+				pstmt.setString(1, id);
 				pstmt.setString(2, password);
 				rs=pstmt.executeQuery();
 				
@@ -58,5 +56,37 @@ public class MemberDAO {
 			}
 	  	  return result;
 	    }//end isExist
+	    
+	    public void insert(int pcNum, String id, String password) {
+			Connection con = null;
+			PreparedStatement pstmt=null;
+			
+			try {
+				con=DriverManager.getConnection(url,userid,passwd);
+				String sql="INSERT INTO pc "
+						+ "VALUES(?,?,?)";
+				pstmt=con.prepareStatement(sql);
+				//?안에 실제 데이터 넣기 
+				pstmt.setInt(1, pcNum);
+				pstmt.setString(2,id.trim());
+				pstmt.setString(3,password.trim());
+				
+				
+				int n=pstmt.executeUpdate();//excuteupdate->sql저장한 것을 실행 
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				try {
+					if(pstmt != null)pstmt.close();
+					if(con != null) con.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+		}//end insert
 	    
 }//end memberDAO

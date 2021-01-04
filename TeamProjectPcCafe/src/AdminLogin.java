@@ -75,7 +75,8 @@ public class AdminLogin extends JFrame{
 		layeredPane.add(panel);
 		
 		add(layeredPane);
-	
+		setLocationRelativeTo(null);
+
 		setVisible(true);
 		
 		
