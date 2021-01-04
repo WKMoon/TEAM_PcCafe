@@ -20,8 +20,76 @@ public class MemberDAO {
 
 		}// end memberDAO CONS
 		
+		//로그인 되어있는지 check
+		public boolean loginCheck(String id) {
+			boolean result = false;
+			Connection con= null;
+	    	PreparedStatement pstmt=null;
+	    	ResultSet rs=null;
+	    	
+	    	try {
+				con=DriverManager.getConnection(url,userid,passwd);
+				String sql="SELECT * FROM pc WHERE id=?";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setString(1, id);
+				rs=pstmt.executeQuery();
+				
+				while(rs.next()) {
+					result=true;
+				}
+				
+				
+	    	} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				try {
+					if(rs !=null) rs.close();
+					if(pstmt != null) pstmt.close();
+					if(con != null) con.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+	  	  return result;
+		}//end loginCheck
 		
-		//name이 존재하는지 체크하는 메소드
+		//pc가 비어있는지 check
+		public boolean pcCheck(int seat) {
+			boolean result = false;
+			Connection con= null;
+	    	PreparedStatement pstmt=null;
+	    	ResultSet rs=null;
+	    	
+	    	try {
+				con=DriverManager.getConnection(url,userid,passwd);
+				String sql="SELECT * FROM pc WHERE pcNum=?";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setInt(1, seat);
+				rs=pstmt.executeQuery();
+				
+				while(rs.next()) {
+					result=true;
+				}
+				
+				
+	    	} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				try {
+					if(rs !=null) rs.close();
+					if(pstmt != null) pstmt.close();
+					if(con != null) con.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+	  	  return result;
+		}//end pcCheck
+		//member id 체크 메서드
 	    public boolean isExist(String id, String password) {
 	    	boolean result=false;
 	    	Connection con= null;
@@ -57,6 +125,7 @@ public class MemberDAO {
 	  	  return result;
 	    }//end isExist
 	    
+	    //pc에 insert
 	    public void insert(int pcNum, String id, String password) {
 			Connection con = null;
 			PreparedStatement pstmt=null;
