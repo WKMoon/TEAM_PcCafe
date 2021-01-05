@@ -37,7 +37,7 @@ public class AdminLogin extends JFrame{
 		
 		
 		try {
-			img = ImageIO.read(new File("C:\\Users\\wkmoo\\git\\TeamProject_PcCafeProject\\TeamProject_PcCafeProject\\TeamProjectPcCafe\\src\\img/login.jpg"));
+			img = ImageIO.read(new File("C:\\Users\\wkmoo\\Java\\Korea-Java\\TEAM_PcCafe\\TeamProjectPcCafe\\src\\img/login.jpg"));
 		}catch(IOException e) {
 			System.out.println("Failed to load image");
 			System.exit(0);
@@ -67,7 +67,7 @@ public class AdminLogin extends JFrame{
 		passwordField.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		layeredPane.add(passwordField);
 
-		btn = new JButton(new ImageIcon("C:\\Users\\wkmoo\\git\\TeamProject_PcCafeProject\\TeamProject_PcCafeProject\\TeamProjectPcCafe\\src\\img/loginBtn.png"));
+		btn = new JButton(new ImageIcon("C:\\Users\\wkmoo\\Java\\Korea-Java\\TEAM_PcCafe\\TeamProjectPcCafe\\src\\img/loginBtn.png"));
 		btn.setBounds(70,200,450,50);
 
 		layeredPane.add(btn);
@@ -88,8 +88,8 @@ public class AdminLogin extends JFrame{
 				String pass = passwordField.getText().toString();
 				
 				if(id.equals(ADMINID) && pass.equals(ADMINPASS)) {
-		            JOptionPane.showMessageDialog(null,"Correct Account");
-
+		            MainPanel mp = new MainPanel();
+		            
 				}
 			}
 		});
