@@ -280,7 +280,8 @@ public class MainPanel extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Login lg = new Login();
-				lg.main(null);
+	
+				lg.display();
 			}
 		});
 		b3.addActionListener(new ActionListener() {
@@ -343,9 +344,11 @@ public class MainPanel extends JFrame{
 	
 	
 	public static void main(String[] args) {
+
 		new MainPanel();
 		
 	}
+
 	
 
 	

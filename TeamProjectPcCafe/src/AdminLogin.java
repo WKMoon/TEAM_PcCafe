@@ -26,7 +26,8 @@ public class AdminLogin extends JFrame{
 	JButton btn;
 	
 	public static void main(String[] args) {
-		new AdminLogin();
+		new AdminLogin();	
+
 	}
 	
 	public AdminLogin() {
