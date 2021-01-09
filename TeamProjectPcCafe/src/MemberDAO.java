@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class MemberDAO {
 		String driver="oracle.jdbc.driver.OracleDriver";
 		String url="jdbc:oracle:thin:@localhost:1521:XE";
-		String userid="PCUSER";//¸¸µç ¸É¹ö Å¬·¡½ºÀÇ ¾ÆÀÌµğ¶û ºñ¹Ğ¹øÈ£ 
+		String userid="PCUSER";//ë§Œë“  ë§´ë²„ í´ë˜ìŠ¤ì˜ ì•„ì´ë””ë‘ ë¹„ë°€ë²ˆí˜¸ 
 		String passwd="12345";
 
 		
@@ -20,7 +20,7 @@ public class MemberDAO {
 
 		}// end memberDAO CONS
 		
-		//·Î±×ÀÎ µÇ¾îÀÖ´ÂÁö check
+		//ë¡œê·¸ì¸ ë˜ì–´ìˆëŠ”ì§€ check
 		public boolean loginCheck(String id) {
 			boolean result = false;
 			Connection con= null;
@@ -55,7 +55,7 @@ public class MemberDAO {
 	  	  return result;
 		}//end loginCheck
 		
-		//pc°¡ ºñ¾îÀÖ´ÂÁö check
+		//pcê°€ ë¹„ì–´ìˆëŠ”ì§€ check
 		public boolean pcCheck(int seat) {
 			boolean result = false;
 			Connection con= null;
@@ -89,7 +89,7 @@ public class MemberDAO {
 			}
 	  	  return result;
 		}//end pcCheck
-		//member id Ã¼Å© ¸Ş¼­µå
+		//member id ì²´í¬ ë©”ì„œë“œ
 	    public boolean isExist(String id, String password) {
 	    	boolean result=false;
 	    	Connection con= null;
@@ -125,23 +125,23 @@ public class MemberDAO {
 	  	  return result;
 	    }//end isExist
 	    
-	    //pc¿¡ insert
-	    public void insert(int pcNum, String id, String password) {
+	    //pcì— insert
+	    public void insert(int pcNum, String id, String password, long time) {
 			Connection con = null;
 			PreparedStatement pstmt=null;
 			
 			try {
 				con=DriverManager.getConnection(url,userid,passwd);
 				String sql="INSERT INTO pc "
-						+ "VALUES(?,?,?)";
+						+ "VALUES(?,?,?,?)";
 				pstmt=con.prepareStatement(sql);
-				//?¾È¿¡ ½ÇÁ¦ µ¥ÀÌÅÍ ³Ö±â 
+				//?ì•ˆì— ì‹¤ì œ ë°ì´í„° ë„£ê¸° 
 				pstmt.setInt(1, pcNum);
 				pstmt.setString(2,id.trim());
 				pstmt.setString(3,password.trim());
+				pstmt.setLong(4, time);
 				
-				
-				int n=pstmt.executeUpdate();//excuteupdate->sqlÀúÀåÇÑ °ÍÀ» ½ÇÇà 
+				int n=pstmt.executeUpdate();//excuteupdate->sqlì €ì¥í•œ ê²ƒì„ ì‹¤í–‰ 
 				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -157,5 +157,121 @@ public class MemberDAO {
 			}
 			
 		}//end insert
+	    
+		public void input(String id,String password,String name,String age,String phone) {
+			Connection con=null;
+			PreparedStatement pstmt=null;
+			
+			
+			try {
+				con=DriverManager.getConnection(url,userid,passwd);
+				String sql="INSERT INTO member (id,password,name,age,phone)"
+						+ "VALUES(?,?,?,?,?)";
+				pstmt=con.prepareStatement(sql);
+				
+				pstmt.setString(1, id);
+				pstmt.setString(2, password);
+				pstmt.setString(3, name);
+				pstmt.setInt(4, Integer.parseInt(age));
+				pstmt.setString(5, phone);
+				
+				int n=pstmt.executeUpdate();
+				
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				try {
+					if(pstmt != null)pstmt.close();
+					if(con != null) con.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+			
+		}//input end
+
+
+		//Â¾Ã†Ã€ÃŒÂµÃ° ÃÃŸÂºÂ¹ Â°Ã‹Â»Ã§ 
+		public boolean searchID(String id){
+			boolean result=false;
+			Connection con=null;
+			PreparedStatement pstmt=null;
+			ResultSet rs=null;
+
+			try {
+				con=DriverManager.getConnection(url,userid,passwd);
+				String sql="SELECT*FROM member WHERE id=?";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setString(1, id);
+				rs=pstmt.executeQuery();
+
+				while(rs.next()) {
+					result=true;
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				try {
+					if(rs !=null) rs.close();
+					if(pstmt != null) pstmt.close();
+					if(con != null) con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}//end finally 
+			return result;
+			
+		}//end serch
+
+		//Ã‡ÃÃ€ÃŒÃ‡Ã‚ Â³Ã–Â¾Ã®ÃÃ–Â´Ã‚ Â¸ÃÂ¼Ã’ÂµÃ¥ 
+		public String phone(String phone) {
+			String phonNumber="";
+			
+			if(phone==null) {
+				return phonNumber="";
+			}else if(phone.length()==11) {
+				return phonNumber=phone.replaceFirst("(^[0-9]{4})([0-9]{4})([0-9]{4})$", "$1-$2-$3");
+			}
+			
+			return phonNumber;
+		}//end phone
+		
+		//Ã‡ÃšÂµÃ¥Ã†Ã¹ Â¹Ã¸ÃˆÂ£ Â¹Â®Ã€Ãš Â±Â¸ÂºÃ 
+		public boolean checkPhone(String phone) {
+			char ch;
+			boolean check=false;
+			
+			for (int i = 0; i < phone.length(); i++) {
+				ch=phone.charAt(i);
+				if(!Character.isDigit(ch)) {
+					check=true;
+				}
+			}
+			return check;
+			
+			
+		}
+		
+		
+		
+		//Â³ÂªÃ€ÃŒ Â¹Â®Ã€Ãš Â±Â¸ÂºÃ Ã‡Ã˜ÃÃ–Â±Ã¢ 
+	public boolean age(String age) {
+		char ch;
+		boolean check=false;
+		
+		for (int i = 0; i < age.length(); i++) {
+			ch=age.charAt(i);
+			if(!Character.isDigit(ch)) {
+				check=true;
+			}
+		}
+		return check;
+		
+	}//end age
 	    
 }//end memberDAO

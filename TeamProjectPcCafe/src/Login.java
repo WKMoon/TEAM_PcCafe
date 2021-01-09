@@ -1,7 +1,11 @@
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,10 +21,11 @@ public class Login{
 	static JTextField text = new JTextField();
 	static JPasswordField value = new JPasswordField();
 	static JTextField pc = new JTextField();
-	static MainPanel mp = new MainPanel();
 
+
+	public Login() {
 	
-	public static void display() {		
+//	public static void display() {		
 	JLabel l1 = new JLabel("아이디:");
 	l1.setBounds(20,20,80,30);
 	text.setBounds(100,20,100,30);
@@ -43,7 +48,7 @@ public class Login{
 	f.setLayout(null);
 	f.setLocationRelativeTo(null);
 	f.setVisible(true);
-	f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//	f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	
 	
 	b.addActionListener(new ActionListener() {
@@ -59,6 +64,16 @@ public class Login{
 				JOptionPane.showMessageDialog(null,"정보를 모두 입력하세요.");
 			}//end if
 			
+			if(!checkSeat(pc.getText().toString())) {
+				JOptionPane.showMessageDialog(null,"좌석은 0 ~ 20 숫자입니다.");
+				pc.setText("");
+			}//end if
+			else if(0>Integer.parseInt(pc.getText().toString()) || 20<Integer.parseInt(pc.getText().toString())) {
+				JOptionPane.showMessageDialog(null,"좌석은 0 ~ 20 입니다.");
+				pc.setText("");
+			}//end else if
+			
+
 			
 			if(check && !pc.getText().isEmpty()) {
 				if(md.loginCheck(id)) {
@@ -76,8 +91,9 @@ public class Login{
 			}//end else
 			
 		}//end actionPerformed
-	});}//end display
-	
+	});
+//	}//end display
+	}//end cons
 	//자리 배정
 	public static void setSeat(String id, String password, int seat) {
 		MemberDAO md = new MemberDAO();
@@ -88,113 +104,127 @@ public class Login{
 			pc.setText("");
 		}//end if
 		else {
-			md.insert(seat, id, password);
+			Date date = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+			String strDate = String.valueOf(sdf.format(date));
+			
+			long intDate = date.getTime();
+			long seconds = TimeUnit.MILLISECONDS.toSeconds(intDate);
+		
+			md.insert(seat, id, password, seconds);
 			JOptionPane.showMessageDialog(null,"좌석 배정됨.");
 			//좌석배정
 			//TRUNCATE TABLE tableName; -- 테이블의 구조는 유지하면서 모든 데이터들만 삭제
 			f.dispose();//좌석 배정시 창 닫기
 
-			setTime(seat, id);
+			setTime(seat, id, strDate);
 		}//end else
 	}//end setSeat
 	
-	public static void setTime(int seat, String id) {
-		long elapsedTime = 0;
+	public static void setTime(int seat, String id, String strDate) {
 
-		while(elapsedTime < 10) {
-			try {
-				Thread.sleep(1000);
-				String strTime = String.valueOf(elapsedTime);
 
+			String strTime = strDate;
+
+			
 			switch(seat) {
-			case 1:
-				mp.tfName1.setText(id);
-				mp.tfTime1.setText(strTime);
-				break;
-			case 2:
-				mp.tfName2.setText(id);
-				mp.tfTime2.setText(strTime);
-				break;
-			case 3:
-				mp.tfName3.setText(id);
-				mp.tfTime3.setText(strTime);
-				break;
-			case 4:
-				mp.tfName4.setText(id);
-				mp.tfTime4.setText(strTime);
-				break;
-			case 5:
-				mp.tfName5.setText(id);
-				mp.tfTime5.setText(strTime);
-				break;
-			case 6:
-				mp.tfName6.setText(id);
-				mp.tfTime6.setText(strTime);
-				break;
-			case 7:
-				mp.tfName7.setText(id);
-				mp.tfTime7.setText(strTime);
-				break;
-			case 8:
-				mp.tfName8.setText(id);
-				mp.tfTime8.setText(strTime);
-				break;
-			case 9:
-				mp.tfName9.setText(id);
-				mp.tfTime9.setText(strTime);
-				break;
-			case 10:
-				mp.tfName10.setText(id);
-				mp.tfTime10.setText(strTime);
-				break;
-			case 11:
-				mp.tfName11.setText(id);
-				mp.tfTime11.setText(strTime);
-				break;
-			case 12:
-				mp.tfName12.setText(id);
-				mp.tfTime12.setText(strTime);
-				break;
-			case 13:
-				mp.tfName13.setText(id);
-				mp.tfTime13.setText(strTime);
-				break;
-			case 14:
-				mp.tfName14.setText(id);
-				mp.tfTime14.setText(strTime);
-				break;
-			case 15:
-				mp.tfName15.setText(id);
-				mp.tfTime15.setText(strTime);
-				break;
-			case 16:
-				mp.tfName16.setText(id);
-				mp.tfTime16.setText(strTime);
-				break;
-			case 17:
-				mp.tfName17.setText(id);
-				mp.tfTime17.setText(strTime);
-				break;
-			case 18:
-				mp.tfName18.setText(id);
-				mp.tfTime18.setText(strTime);
-				break;
-			case 19:
-				mp.tfName19.setText(id);
-				mp.tfTime19.setText(strTime);
-				break;
-			case 20:
-				mp.tfName20.setText(id);
-				mp.tfTime20.setText(strTime);
-				break;
+				case 1:
+					MainPanel.tfName1.setText(id);
+					MainPanel.tfTime1.setText(strTime);
+					break;
+				case 2:
+					MainPanel.tfName2.setText(id);
+					MainPanel.tfTime2.setText(strTime);
+					break;
+				case 3:
+					MainPanel.tfName3.setText(id);
+					MainPanel.tfTime3.setText(strTime);
+					break;
+				case 4:
+					MainPanel.tfName4.setText(id);
+					MainPanel.tfTime4.setText(strTime);
+					break;
+				case 5:
+					MainPanel.tfName5.setText(id);
+					MainPanel.tfTime5.setText(strTime);
+					break;
+				case 6:
+					MainPanel.tfName6.setText(id);
+					MainPanel.tfTime6.setText(strTime);
+					break;
+				case 7:
+					MainPanel.tfName7.setText(id);
+					MainPanel.tfTime7.setText(strTime);
+					break;
+				case 8:
+					MainPanel.tfName8.setText(id);
+					MainPanel.tfTime8.setText(strTime);
+					break;
+				case 9:
+					MainPanel.tfName9.setText(id);
+					MainPanel.tfTime9.setText(strTime);
+					break;
+				case 10:
+					MainPanel.tfName10.setText(id);
+					MainPanel.tfTime10.setText(strTime);
+					break;
+				case 11:
+					MainPanel.tfName11.setText(id);
+					MainPanel.tfTime11.setText(strTime);
+					break;
+				case 12:
+					MainPanel.tfName12.setText(id);
+					MainPanel.tfTime12.setText(strTime);
+					break;
+				case 13:
+					MainPanel.tfName13.setText(id);
+					MainPanel.tfTime13.setText(strTime);
+					break;
+				case 14:
+					MainPanel.tfName14.setText(id);
+					MainPanel.tfTime14.setText(strTime);
+					break;
+				case 15:
+					MainPanel.tfName15.setText(id);
+					MainPanel.tfTime15.setText(strTime);
+					break;
+				case 16:
+					MainPanel.tfName16.setText(id);
+					MainPanel.tfTime16.setText(strTime);
+					break;
+				case 17:
+					MainPanel.tfName17.setText(id);
+					MainPanel.tfTime17.setText(strTime);
+					break;
+				case 18:
+					MainPanel.tfName18.setText(id);
+					MainPanel.tfTime18.setText(strTime);
+					break;
+				case 19:
+					MainPanel.tfName19.setText(id);
+					MainPanel.tfTime19.setText(strTime);
+					break;
+				case 20:
+					MainPanel.tfName20.setText(id);
+					MainPanel.tfTime20.setText(strTime);
+					break;
 			}//end switch
-
-			elapsedTime++;
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}//end catch
-		}//end while
 	}//end setTime
 
+	public static void main(String[] args) {
+		new Login();
+	}
+
+	public static boolean checkSeat(String seat) {
+		boolean result = true;
+		String num = "0123456789";
+		for(int i = 0; i < seat.length(); i++) {
+			String numChar = String.valueOf(seat.charAt(i));
+			if(!num.contains(numChar)) {
+				result = false;
+			}//end if
+		}//end for
+		return result;
+	}//end checkSeat
+	
 }//end Login

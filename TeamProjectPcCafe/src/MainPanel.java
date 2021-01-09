@@ -21,7 +21,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-public class MainPanel extends JFrame{
+public class MainPanel extends JFrame implements Runnable{
 	//이미지 넣기
 	private Image background=new ImageIcon(MainPanel.class.getResource(".\\img/new background.jpg")).getImage();//배경이미지
 	private ImageIcon btImage1=new ImageIcon(MainPanel.class.getResource(".\\img/join.png"));
@@ -37,7 +37,7 @@ public class MainPanel extends JFrame{
 	static JButton b4=new JButton("button4");
 	static JButton b5=new JButton("button5");
 	//텍스트필드
-	TextField tfName1,tfTime1,tfName2,tfTime2,
+	static TextField tfName1,tfTime1,tfName2,tfTime2,
 	tfName3,tfTime3,tfName4,tfTime4,
 	tfName5,tfTime5,tfName6,tfTime6,tfName7,tfTime7,
 	tfName8,tfTime8,tfName9,tfTime9,
@@ -273,15 +273,13 @@ public class MainPanel extends JFrame{
 		b1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
+				SignUp su = new SignUp();
 			}
 		});
 		b2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Login lg = new Login();
-	
-				lg.display();
 			}
 		});
 		b3.addActionListener(new ActionListener() {
@@ -302,6 +300,7 @@ public class MainPanel extends JFrame{
 				System.exit(0);
 			}
 		});
+		
 	
 	}
 	
@@ -346,6 +345,15 @@ public class MainPanel extends JFrame{
 	public static void main(String[] args) {
 
 		new MainPanel();
+		
+	}
+
+
+
+
+	@Override
+	public void run() {
+		btn();
 		
 	}
 
