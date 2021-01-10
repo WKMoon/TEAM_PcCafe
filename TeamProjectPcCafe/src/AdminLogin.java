@@ -69,7 +69,7 @@ public class AdminLogin extends JFrame{
 		layeredPane.add(passwordField);
 
 		btn = new JButton(new ImageIcon("C:\\Users\\wkmoo\\Java\\Korea-Java\\TEAM_PcCafe\\TeamProjectPcCafe\\src\\img/loginBtn.png"));
-		btn.setBounds(70,200,450,50);
+		btn.setBounds(176,185,235,40);
 
 		layeredPane.add(btn);
 		

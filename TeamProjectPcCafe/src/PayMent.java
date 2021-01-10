@@ -31,7 +31,7 @@ public class PayMent {
       lb=new JLabel("정산");
       Font f1=new Font("돋움",Font.BOLD,20);
       lb.setFont(f1);
-      lb.setBounds(90,20,70,25);
+      lb.setBounds(90,20,70,20);
       fr.add(lb);
       
       
@@ -61,6 +61,21 @@ public class PayMent {
 			String strTf1 = tf1.getText().toString();
 			long time = 0;
 			long money = 0;
+			//validation
+			if(tf1.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(null,"좌석 번호를 입력하세요.");
+			}//end if
+			
+			if(!checkSeat(strTf1)) {
+				JOptionPane.showMessageDialog(null,"좌석은 0 ~ 20 숫자입니다.");
+				tf1.setText("");
+			}//end if
+			else if(0>Integer.parseInt(strTf1) || 20<Integer.parseInt(strTf1)) {
+				JOptionPane.showMessageDialog(null,"좌석은 0 ~ 20 입니다.");
+				tf1.setText("");
+			}//end else if
+			
+
 			if(md.checkPc(strTf1)) {
 				time = md.getTime(strTf1);
 				Date date = new Date();
@@ -161,6 +176,19 @@ public class PayMent {
 		}//end actionPerformed
 	});
    }//end cons
+   
+	public static boolean checkSeat(String seat) {
+		boolean result = true;
+		String num = "0123456789";
+		for(int i = 0; i < seat.length(); i++) {
+			String numChar = String.valueOf(seat.charAt(i));
+			if(!num.contains(numChar)) {
+				result = false;
+			}//end if
+		}//end for
+		return result;
+	}//end checkSeat
+   
    
    public static void main(String[] args) {
       new PayMent();
