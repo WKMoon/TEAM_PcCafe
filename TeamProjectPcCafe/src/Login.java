@@ -25,7 +25,6 @@ public class Login{
 
 	public Login() {
 	
-//	public static void display() {		
 	JLabel l1 = new JLabel("¾ÆÀÌµð:");
 	l1.setBounds(20,20,80,30);
 	text.setBounds(100,20,100,30);
@@ -48,7 +47,6 @@ public class Login{
 	f.setLayout(null);
 	f.setLocationRelativeTo(null);
 	f.setVisible(true);
-//	f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	
 	
 	b.addActionListener(new ActionListener() {
@@ -213,7 +211,7 @@ public class Login{
 
 	public static void main(String[] args) {
 		new Login();
-	}
+	}//end main
 
 	public static boolean checkSeat(String seat) {
 		boolean result = true;
