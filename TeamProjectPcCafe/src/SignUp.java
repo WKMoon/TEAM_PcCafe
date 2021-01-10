@@ -98,29 +98,26 @@ public class SignUp extends JFrame {
 				//³ªÀÌ¿¡ ¹®ÀÚ¿­ ¾µ¶§ 
 				//¼ýÀÚ¿¡ ¹®ÀÚ ¾µ‹š 
 				
-				if(tf2.getText().length()>10) {
-					JOptionPane.showMessageDialog(null, "비밀번호는 10자리 이내로 입력해주세요");
-					tf2.setText("");
-				}
-				else if(tf1.getText().isEmpty()||tf2.getText().isEmpty()||tf3.getText().isEmpty()||tf4.getText().isEmpty()||tf5.getText().isEmpty()) {
-					JOptionPane.showMessageDialog(null, "정보를 전부 입력해주세요 ");
-					//¾ÆÀÌµð Áßº¹Ã¼Å© ¹öÆ°À» ´©¸£Áö ¾Ê¾ÒÀ»¶§ 
-				}else if(dao.searchID(id)) {
+				if(dao.searchID(id)) {
 					JOptionPane.showMessageDialog(null, "중복된 아이디 입니다.");
 					tf1.setText("");
 				}else if(tf1.getText().length()>10) {
 					JOptionPane.showMessageDialog(null, "아이디는 10자 이내로 입력해주세요");
 					tf1.setText("");
+				}else if(tf2.getText().length()>10) {
+					JOptionPane.showMessageDialog(null, "비밀번호는 10자리 이내로 입력해주세요");
+					tf2.setText("");
 				}else if(dao.age(age)) {
 					JOptionPane.showMessageDialog(null, "숫자로 입력해주세요");
 					tf4.setText("");
 				}else if(dao.checkPhone(phone)) {
 					JOptionPane.showMessageDialog(null, "전화번호 형식은 [xxx-xxxx-xxxx]입니다 '-'생략 ");
 					tf5.setText("");
-				
 				}else if(dao.phone(phone)=="") {
 					JOptionPane.showMessageDialog(null, "전화번호 11자리 입력해주세요");
 					tf5.setText("");
+				}else if(tf1.getText().isEmpty()||tf2.getText().isEmpty()||tf3.getText().isEmpty()||tf4.getText().isEmpty()||tf5.getText().isEmpty()) {
+						JOptionPane.showMessageDialog(null, "정보를 전부 입력해주세요 ");
 				}else {
 					 JOptionPane.showMessageDialog(null, "회원가입이 완료 되었습니다 ");				 
 					 dao.input(id, password, name, age, phone);

@@ -255,11 +255,138 @@ public class MemberDAO {
 			return check;
 			
 			
-		}
+		}//end checkPhone
+		
+		public boolean checkPc(String pcNum) {
+	    	boolean result=false;
+	    	Connection con= null;
+	    	PreparedStatement pstmt=null;
+	    	ResultSet rs=null;
+	    	
+	    	try {
+				con=DriverManager.getConnection(url,userid,passwd);
+				String sql="SELECT * FROM pc WHERE pcNum=?";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setInt(1, Integer.parseInt(pcNum));
+				rs=pstmt.executeQuery();
+				
+				while(rs.next()) {
+					result=true;
+				}
+				
+				
+	    	} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				try {
+					if(rs !=null) rs.close();
+					if(pstmt != null) pstmt.close();
+					if(con != null) con.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+	  	  return result;
+		}//end checkPc
+		
+		public long getTime(String pcNum) {
+	    	Connection con= null;
+	    	PreparedStatement pstmt=null;
+	    	ResultSet rs=null;
+	    	long time = 0;
+	    	try {
+				con=DriverManager.getConnection(url,userid,passwd);
+				String sql="SELECT * FROM pc WHERE pcNum=?";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setInt(1, Integer.parseInt(pcNum));
+				rs=pstmt.executeQuery();
+				
+				while(rs.next()) {
+					time = rs.getLong(4);
+				}//end while
+				
+				
+	    	} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				try {
+					if(rs !=null) rs.close();
+					if(pstmt != null) pstmt.close();
+					if(con != null) con.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+	    	return time;
+		}//end getTime
 		
 		
+		public void insertMoney(int pcNum, long money) {
+			Connection con=null;
+			PreparedStatement pstmt=null;
+			
+			try {
+				con=DriverManager.getConnection(url,userid,passwd);
+				String sql="INSERT INTO payment (pcNum,money)"
+						+ "VALUES(?,?)";
+				pstmt=con.prepareStatement(sql);
+				
+				pstmt.setInt(1, pcNum);
+				pstmt.setLong(2, money);
+	
+				
+				int n=pstmt.executeUpdate();
+				
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				try {
+					if(pstmt != null)pstmt.close();
+					if(con != null) con.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+			
+		}//end insertMoney
 		
-		//³ªÀÌ ¹®ÀÚ ±¸ºÐ ÇØÁÖ±â 
+		public void deleteLogin(int pcNum) {
+			Connection con=null;
+			PreparedStatement pstmt=null;
+			
+			try {
+				con=DriverManager.getConnection(url,userid,passwd);
+				String sql="DELETE FROM pc WHERE pcNum=?";
+				pstmt=con.prepareStatement(sql);
+				
+				pstmt.setInt(1, pcNum);
+	
+				
+				int n=pstmt.executeUpdate();
+				
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				try {
+					if(pstmt != null)pstmt.close();
+					if(con != null) con.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}//end deleteLogin
+		
 	public boolean age(String age) {
 		char ch;
 		boolean check=false;

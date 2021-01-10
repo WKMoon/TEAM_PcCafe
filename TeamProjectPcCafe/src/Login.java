@@ -90,7 +90,6 @@ public class Login{
 			
 		}//end actionPerformed
 	});
-//	}//end display
 	}//end cons
 	//자리 배정
 	public static void setSeat(String id, String password, int seat) {
@@ -209,9 +208,6 @@ public class Login{
 			}//end switch
 	}//end setTime
 
-	public static void main(String[] args) {
-		new Login();
-	}//end main
 
 	public static boolean checkSeat(String seat) {
 		boolean result = true;
@@ -224,5 +220,8 @@ public class Login{
 		}//end for
 		return result;
 	}//end checkSeat
-	
+
+	public static void main(String[] args) {
+		new Login();
+	}//end main
 }//end Login

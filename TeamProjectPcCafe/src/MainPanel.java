@@ -286,12 +286,14 @@ public class MainPanel extends JFrame implements Runnable{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
+
 			}
 		});
 		b4.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
+				PayMent pm = new PayMent();
+
 			}
 		});
 		b5.addActionListener(new ActionListener() {
