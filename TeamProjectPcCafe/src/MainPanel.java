@@ -7,6 +7,8 @@ import java.awt.TextField;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.ImageProducer;
@@ -187,7 +189,146 @@ public class MainPanel extends JFrame implements Runnable{
         add(tfName20);
         tfTime20.setBounds(885, 688, 50, 20);
         add(tfTime20);
-        
+        tfName1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+               ChatServer.id=tfName1.getText();
+               ChatClient.id=tfName1.getText();
+            }
+         });
+         tfName2.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+               ChatServer.id=tfName2.getText();
+               ChatClient.id=tfName2.getText();
+            }
+         });
+         tfName3.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+               ChatServer.id=tfName3.getText();
+               ChatClient.id=tfName3.getText();
+            }
+         });
+         tfName4.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+               ChatServer.id=tfName4.getText();
+               ChatClient.id=tfName4.getText();
+            }
+         });
+         tfName5.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+               ChatServer.id=tfName5.getText();
+               ChatClient.id=tfName5.getText();
+            }
+         });
+         tfName6.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+               ChatServer.id=tfName6.getText();
+               ChatClient.id=tfName6.getText();
+            }
+         });
+         tfName7.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+               ChatServer.id=tfName7.getText();
+               ChatClient.id=tfName7.getText();
+            }
+         });
+         tfName8.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+               ChatServer.id=tfName8.getText();
+               ChatClient.id=tfName8.getText();
+            }
+         });
+         tfName9.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+               ChatServer.id=tfName9.getText();
+               ChatClient.id=tfName9.getText();
+            }
+         });
+         tfName10.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+               ChatServer.id=tfName10.getText();
+               ChatClient.id=tfName10.getText();
+            }
+         });
+         tfName11.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+               ChatServer.id=tfName11.getText();
+               ChatClient.id=tfName11.getText();
+            }
+         });
+         tfName12.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+               ChatServer.id=tfName12.getText();
+               ChatClient.id=tfName12.getText();
+            }
+         });
+         tfName13.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+               ChatServer.id=tfName13.getText();
+               ChatClient.id=tfName13.getText();
+            }
+         });
+         tfName14.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+               ChatServer.id=tfName14.getText();
+               ChatClient.id=tfName14.getText();
+            }
+         });
+         tfName15.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+               ChatServer.id=tfName15.getText();
+               ChatClient.id=tfName15.getText();
+            }
+         });
+         tfName16.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+               ChatServer.id=tfName16.getText();
+               ChatClient.id=tfName16.getText();
+            }
+         });
+         tfName17.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+               ChatServer.id=tfName17.getText();
+               ChatClient.id=tfName17.getText();
+            }
+         });
+         tfName18.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+               ChatServer.id=tfName18.getText();
+               ChatClient.id=tfName18.getText();
+            }
+         });
+         tfName19.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+               ChatServer.id=tfName19.getText();
+               ChatClient.id=tfName19.getText();
+            }
+         });
+         tfName20.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+               ChatServer.id=tfName20.getText();
+               ChatClient.id=tfName20.getText();
+            }
+         });
 	}
 
 	
@@ -283,12 +424,12 @@ public class MainPanel extends JFrame implements Runnable{
 			}
 		});
 		b3.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-
-			}
-		});
+	         @Override
+	         public void actionPerformed(ActionEvent e) {
+	            ChatServer cs = new ChatServer();
+	            ChatClient cc = new ChatClient();
+	         }
+	      });
 		b4.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -299,7 +440,7 @@ public class MainPanel extends JFrame implements Runnable{
 		b5.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
+				Total tt = new Total();
 			}
 		});
 		
@@ -309,12 +450,12 @@ public class MainPanel extends JFrame implements Runnable{
 	public MainPanel() {
 		homeframe();
 		btn();
-		seat();
 	
 	}
 	public void homeframe() {
 		
-		
+		seat();
+
 		setTitle("1");
 		setSize(1600,900);
 

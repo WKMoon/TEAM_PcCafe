@@ -110,6 +110,9 @@ public class Login{
 		
 			md.insert(seat, id, password, seconds);
 			JOptionPane.showMessageDialog(null,"좌석 배정됨.");
+			text.setText("");
+			value.setText("");
+			pc.setText("");
 			//좌석배정
 			//TRUNCATE TABLE tableName; -- 테이블의 구조는 유지하면서 모든 데이터들만 삭제
 			f.dispose();//좌석 배정시 창 닫기

@@ -82,96 +82,101 @@ public class PayMent {
 				long intDate = date.getTime();
 				long seconds = TimeUnit.MILLISECONDS.toSeconds(intDate);
 				
-				money = (seconds - time) * 100;
+				money = (seconds - time) * 10;
 				
 				md.insertMoney(Integer.parseInt(strTf1),money);
 				md.deleteLogin(Integer.parseInt(strTf1));
 				
 				JOptionPane.showMessageDialog(null,money+"원 정산 되었습니다.");
-				
-				switch(Integer.parseInt(strTf1)) {
-				case 1:
-					MainPanel.tfName1.setText("");
-					MainPanel.tfTime1.setText("");
-					break;
-				case 2:
-					MainPanel.tfName2.setText("");
-					MainPanel.tfTime2.setText("");
-					break;
-				case 3:
-					MainPanel.tfName3.setText("");
-					MainPanel.tfTime3.setText("");
-					break;
-				case 4:
-					MainPanel.tfName4.setText("");
-					MainPanel.tfTime4.setText("");
-					break;
-				case 5:
-					MainPanel.tfName5.setText("");
-					MainPanel.tfTime5.setText("");
-					break;
-				case 6:
-					MainPanel.tfName6.setText("");
-					MainPanel.tfTime6.setText("");
-					break;
-				case 7:
-					MainPanel.tfName7.setText("");
-					MainPanel.tfTime7.setText("");
-					break;
-				case 8:
-					MainPanel.tfName8.setText("");
-					MainPanel.tfTime8.setText("");
-					break;
-				case 9:
-					MainPanel.tfName9.setText("");
-					MainPanel.tfTime9.setText("");
-					break;
-				case 10:
-					MainPanel.tfName10.setText("");
-					MainPanel.tfTime10.setText("");
-					break;
-				case 11:
-					MainPanel.tfName11.setText("");
-					MainPanel.tfTime11.setText("");
-					break;
-				case 12:
-					MainPanel.tfName12.setText("");
-					MainPanel.tfTime12.setText("");
-					break;
-				case 13:
-					MainPanel.tfName13.setText("");
-					MainPanel.tfTime13.setText("");
-					break;
-				case 14:
-					MainPanel.tfName14.setText("");
-					MainPanel.tfTime14.setText("");
-					break;
-				case 15:
-					MainPanel.tfName15.setText("");
-					MainPanel.tfTime15.setText("");
-					break;
-				case 16:
-					MainPanel.tfName16.setText("");
-					MainPanel.tfTime16.setText("");
-					break;
-				case 17:
-					MainPanel.tfName17.setText("");
-					MainPanel.tfTime17.setText("");
-					break;
-				case 18:
-					MainPanel.tfName18.setText("");
-					MainPanel.tfTime18.setText("");
-					break;
-				case 19:
-					MainPanel.tfName19.setText("");
-					MainPanel.tfTime19.setText("");
-					break;
-				case 20:
-					MainPanel.tfName20.setText("");
-					MainPanel.tfTime20.setText("");
-					break;
-			}//end switch
+					switch(Integer.parseInt(strTf1)) {
+						case 1:
+							MainPanel.tfName1.setText("");
+							MainPanel.tfTime1.setText("");
+							break;
+						case 2:
+							MainPanel.tfName2.setText("");
+							MainPanel.tfTime2.setText("");
+							break;
+						case 3:
+							MainPanel.tfName3.setText("");
+							MainPanel.tfTime3.setText("");
+							break;
+						case 4:
+							MainPanel.tfName4.setText("");
+							MainPanel.tfTime4.setText("");
+							break;
+						case 5:
+							MainPanel.tfName5.setText("");
+							MainPanel.tfTime5.setText("");
+							break;
+						case 6:
+							MainPanel.tfName6.setText("");
+							MainPanel.tfTime6.setText("");
+							break;
+						case 7:
+							MainPanel.tfName7.setText("");
+							MainPanel.tfTime7.setText("");
+							break;
+						case 8:
+							MainPanel.tfName8.setText("");
+							MainPanel.tfTime8.setText("");
+							break;
+						case 9:
+							MainPanel.tfName9.setText("");
+							MainPanel.tfTime9.setText("");
+							break;
+						case 10:
+							MainPanel.tfName10.setText("");
+							MainPanel.tfTime10.setText("");
+							break;
+						case 11:
+							MainPanel.tfName11.setText("");
+							MainPanel.tfTime11.setText("");
+							break;
+						case 12:
+							MainPanel.tfName12.setText("");
+							MainPanel.tfTime12.setText("");
+							break;
+						case 13:
+							MainPanel.tfName13.setText("");
+							MainPanel.tfTime13.setText("");
+							break;
+						case 14:
+							MainPanel.tfName14.setText("");
+							MainPanel.tfTime14.setText("");
+							break;
+						case 15:
+							MainPanel.tfName15.setText("");
+							MainPanel.tfTime15.setText("");
+							break;
+						case 16:
+							MainPanel.tfName16.setText("");
+							MainPanel.tfTime16.setText("");
+							break;
+						case 17:
+							MainPanel.tfName17.setText("");
+							MainPanel.tfTime17.setText("");
+							break;
+						case 18:
+							MainPanel.tfName18.setText("");
+							MainPanel.tfTime18.setText("");
+							break;
+						case 19:
+							MainPanel.tfName19.setText("");
+							MainPanel.tfTime19.setText("");
+							break;
+						case 20:
+							MainPanel.tfName20.setText("");
+							MainPanel.tfTime20.setText("");
+							break;
+				}//end switch
+				tf1.setText("");
+
 			}//end if
+			else {
+				JOptionPane.showMessageDialog(null,"해당 좌석은 로그인되어있지 않습니다.");
+				tf1.setText("");
+			}//end else
 			
 		}//end actionPerformed
 	});
