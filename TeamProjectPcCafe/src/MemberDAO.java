@@ -401,5 +401,37 @@ public class MemberDAO {
 		
 	}//end age
 	    
-	
+	   public void sales() {
+		      Connection con=null;
+		      PreparedStatement pstmt=null;
+		      ResultSet rs=null;
+		      
+		      try {
+		      con=DriverManager.getConnection(url,userid,passwd);   
+		      String sql="select sum(money) from payment";
+		      pstmt=con.prepareStatement(sql);
+		      rs=pstmt.executeQuery();
+		      while(rs.next()) {
+//		      Total   total=new Total();
+		      Total.tf.setText(""+rs.getInt(1));
+		      }
+		      
+		      
+		      } catch (SQLException e) {
+		         // TODO Auto-generated catch block
+		         e.printStackTrace();
+		      }finally {
+					try {
+						if(rs != null) rs.close();
+						if(pstmt != null)pstmt.close();
+						if(con != null) con.close();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+
+		      
+
+		   }//end sales
 }//end memberDAO
