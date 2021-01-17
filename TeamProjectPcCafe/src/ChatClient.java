@@ -1,5 +1,3 @@
-
-
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -93,7 +91,7 @@ public class ChatClient extends JFrame {
                   dis.close();
                if (socket != null)
                   socket.close();
-               if (id != null || id!="") {
+               if (id != null) {
                   id = null;
                }
             } catch (IOException e1) {
@@ -109,7 +107,7 @@ public class ChatClient extends JFrame {
 
       @Override
       public void run() {
-         if (id != null || id!="") {
+         if (id != null&&id!="") {
             try {
                socket = new Socket("localhost", 1001);
                textArea.append("관리자와 채팅\n");
@@ -141,9 +139,9 @@ public class ChatClient extends JFrame {
    void sendMessage() {
 
       String msg = tfMsg.getText(); // TextField에 써있는 글씨를 얻어오기
-
       tfMsg.setText(""); // 입력 후 빈칸으로
 
+      if (id != null && id!="") 
       if (!msg.equals(""))
          textArea.append(" [" + id + "] : " + msg + "\n");// 1.TextArea(채팅창)에 표시
 
