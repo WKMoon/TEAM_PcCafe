@@ -317,7 +317,7 @@ public class MainPanel extends JFrame implements Runnable{
 		
 		seat();
 
-		setTitle("1");
+		setTitle("PcCafe");
 		setSize(1600,900);
 
 		setResizable(false);//창의 크기 변경못함

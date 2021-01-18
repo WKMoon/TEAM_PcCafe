@@ -412,7 +412,6 @@ public class MemberDAO {
 		      pstmt=con.prepareStatement(sql);
 		      rs=pstmt.executeQuery();
 		      while(rs.next()) {
-//		      Total   total=new Total();
 		      Total.tf.setText(""+rs.getInt(1));
 		      }
 		      

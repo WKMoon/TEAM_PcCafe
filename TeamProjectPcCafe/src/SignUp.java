@@ -77,7 +77,6 @@ public class SignUp extends JFrame {
 
 		fr.setVisible(true);
 		
-		//È¸¿ø°¡ÀÔ ¹öÆ° 
 		bt1.addActionListener(new ActionListener() {
 
 			@Override
@@ -90,13 +89,12 @@ public class SignUp extends JFrame {
 				String phone=tf5.getText().toString();
 			
 				
-				MemberDAO dao=new MemberDAO();//Á¤º¸¸¦ ³ÖÀ» »ý¼ºÀÚ 
+				MemberDAO dao=new MemberDAO();
 				
 				dao.phone(phone);
 				dao.age(age);
 				
-				//³ªÀÌ¿¡ ¹®ÀÚ¿­ ¾µ¶§ 
-				//¼ýÀÚ¿¡ ¹®ÀÚ ¾µ‹š 
+			
 				
 				if(dao.searchID(id)) {
 					JOptionPane.showMessageDialog(null, "중복된 아이디 입니다.");
